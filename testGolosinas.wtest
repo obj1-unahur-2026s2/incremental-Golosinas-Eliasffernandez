@@ -1,0 +1,103 @@
+import golosinas.*
+
+describe "test golosinas"{
+    method initialize(){}
+
+    test "verificar golosinas bombon"{
+        assert.equals(15, bombon.peso())
+        assert.equals(5, bombon.precio())
+        assert.equals(frutilla, bombon.sabor())
+        assert.that(bombon.libreDeGluten())
+    }
+    test "verificar golosinas alfajor"{
+        assert.equals(300, alfajor.peso())
+        assert.equals(12, alfajor.precio())
+        assert.equals(chocolate, alfajor.sabor())
+        assert.notThat(alfajor.libreDeGluten())
+    }
+    test "verificar golosinas caramelo"{
+        assert.equals(5, caramelo.peso())
+        assert.equals(1, caramelo.precio())
+        assert.equals(frutilla, caramelo.sabor())
+        assert.that(caramelo.libreDeGluten())
+    }
+    test "verificar golosinas chupetin"{
+        assert.equals(7, chupetin.peso())
+        assert.equals(2, chupetin.precio())
+        assert.equals(naranja, chupetin.sabor())
+        assert.that(chupetin.libreDeGluten())
+    }
+    test "verificar golosinas oblea"{
+        assert.equals(250, oblea.peso())
+        assert.equals(5, oblea.precio())
+        assert.equals(vainilla, chupetin.sabor())
+        assert.notThat(oblea.libreDeGluten())
+    }
+    test "verificar golosinas chocolatin"{
+        chocolatin.pesoInicial(40)
+        assert.equals(40, chocolatin.peso())
+        assert.equals(20, chocolatin.precio())
+
+        chocolatin.pesoInicial(100)
+        assert.equals(100, chocolatin.peso())
+        assert.equals(50, chocolatin.precio())
+        assert.equals(chocolate, chocolatin.sabor())
+        assert.notThat(chocolatin.libreDeGluten())
+    }
+    test "verificar golosinas pastilla tutti1"{
+        assert.that(pastillaTuttiFrutti.libreGluten())
+        assert.equals(5, pastillaTuttiFrutti.peso())
+        assert.equals(7, pastillaTuttiFrutti.precio())
+        assert.equals(frutilla, pastillaTuttiFrutti.sabor())
+    }
+    test "verificar golosinas pastilla tutti2"{
+        !pastillaTuttiFrutti.libreGluten()
+        assert.that(pastillaTuttiFrutti.libreGluten())
+        assert.equals(5, pastillaTuttiFrutti.peso())
+        assert.equals(10, pastillaTuttiFrutti.precio())
+        assert.equals(chocolate, pastillaTuttiFrutti.sabor())
+    }
+    test "mordisco golosina"{
+        assert.equals(5, caramelo.peso())
+        caramelo.mordisco()
+        caramelo.mordisco()
+        assert.equals(3, caramelo.peso())
+    } 
+    test "mordisco a la golosina"{
+        assert.equals(250, oblea.peso())
+        oblea.mordisco()
+        oblea.mordisco()
+        oblea.mordisco()
+        oblea.peso()
+    } 
+}
+
+/*  var libreDeGluten = true
+	const sabores = [frutilla, chocolate, naranja]
+	var saborActual = 0
+	
+	method mordisco() { saborActual += 1 }	
+	method sabor() { return sabores.get(saborActual % 3) }	
+
+	method precio() { return (if(self.libreGluten()) 7 else 10) }
+	method peso() { return 5 }
+	method libreGluten() { return libreDeGluten }	
+	method libreGluten(valor) { libreDeGluten = valor }*/
+
+/*
+var golosinaBase = {}
+    var pesoBaniado =  4 
+
+    method golosinaInterior(unaGolosina){golosinaBase = unaGolosina}
+    method pesoBaniado(unaGolosina) = golosinaBase.peso() + pesoBaniado
+    method precioBñado() = golosinaBase.precio() + 2
+    method sabor(){return golosinaBase.sabor()}
+    method libreDeGluten(){
+        return golosinaBase.libreDeGluten() 
+    }
+    method recibeMordisco(){
+    golosinaBase.recibeUnMordisco()
+    pesoBaniado = (pesoBaniado -2).max(0)
+    }
+*/    
+

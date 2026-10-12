@@ -1,0 +1,87 @@
+
+import golosinas.*
+import mariano.*
+
+describe "Tests de Mariano" {
+
+  test "Mariano compra golosinas" {
+    mariano.comprar(chocolatin)
+    mariano.comprar(caramelo)
+    mariano.comprar(bombon)
+
+    assert.equals(3, mariano.cantidadDeGolosinas())
+    assert.that(mariano.tieneLaGolosina(chocolatin))
+    assert.that(mariano.tieneLaGolosina(caramelo))
+    assert.that(mariano.tieneLaGolosina(bombon))
+  }
+
+
+  test "Mariano tiene golosinas sin TACC" {
+    assert.equals(true, mariano.hayGolosinasSinTacc())
+  }
+
+  test "Mariano verifica los precios cuidados" {
+    assert.equals(true, mariano.preciosCuidados())
+  }
+
+  test "Mariano busca una golosina por sabor" {
+    assert.that(mariano.golosinaDeSabor("chocolate") != null)
+  }
+
+  test "Mariano busca golosinas por sabor" {
+    assert.that(mariano.golosinasDeSabor("chocolate").size() > 0)
+  }
+
+  test "Mariano obtiene los sabores sin repetir" {
+    assert.that(mariano.sabores().contains("chocolate"))
+  }
+
+  test "Mariano busca la golosina mas cara" {
+    assert.that(mariano.golosinaMasCara() != null)
+  }
+
+  test "Mariano calcula el peso total" {
+    assert.equals(
+      chocolatin.peso() + caramelo.peso() + bombon.peso(),
+      mariano.pesoGolosinas()
+    )
+  }
+
+  test "Mariano encuentra las golosinas faltantes" {
+    assert.equals(
+      #{alfajor, chupetin},
+      mariano.golosinasFaltantes(#{alfajor, bombon, chocolatin, chupetin}).asSet()
+    )
+  }
+
+  test "Mariano encuentra los gustos faltantes" {
+    mariano.comprar(chocolatin)
+    mariano.comprar(caramelo)
+    mariano.comprar(bombon)
+
+    assert.equals(#{"melón", frutilla, vainilla},mariano.gustosFaltantes(
+        #{"melón", chocolate, frutilla, vainilla}).asSet())
+}
+
+  test "Mariano calcula el gasto en un sabor" {
+    assert.equals(
+      chocolatin.precio() + bombon.precio(),
+      mariano.gastoEn("chocolate")
+    )
+  }
+
+  test "Mariano encuentra el sabor mas popular" {
+    assert.equals("chocolate", mariano.saborMasPopular())
+  }
+
+  test "Mariano encuentra el sabor mas pesado" {
+    assert.that(mariano.saborMasPesado() != null)
+  }
+
+  test "Mariano recuerda si compro y desecho una golosina" {
+    mariano.desechar(chocolatin)
+
+    assert.that(mariano.comproYDesecho(chocolatin))
+    assert.that(!mariano.tieneLaGolosina(chocolatin))
+  }
+}
